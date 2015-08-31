@@ -2,7 +2,19 @@
 // Generated on Mon Aug 31 2015 18:06:13 GMT+0800 (HKT)
 
 module.exports = function(config) {
-  config.set({
+
+  function isCoverage(argument) {
+    return argument === '--coverage';
+  }
+
+  // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+  var reporters = ['spec'];
+
+  if(process.argv.some(isCoverage)){
+    reporters.push('coverage');
+  }
+
+  var testConfig = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -64,7 +76,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+    reporters: reporters,
 
 
     // web server port
@@ -92,5 +104,26 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false
-  })
+  }
+
+  // Generate code coverage report if --coverage is specified
+  if (process.argv.some(isCoverage)) {
+    // Generate a code coverage report using `lcov` format. Result will be output to coverage/lcov.info
+    // run using `npm coveralls`
+    testConfig['webpack']['module']['postLoaders'] = [{
+      test: /\.jsx?$/,
+      exclude: /(test|node_modules)\//,
+      loader: 'istanbul-instrumenter'
+    }];
+
+    testConfig['coverageReporter'] = {
+      dir: 'coverage/',
+      reporters: [
+        { type: 'lcovonly', subdir: '.', file: 'lcov.info' },
+        { type: 'html', subdir: 'html' }
+      ]
+    };
+  }
+
+  config.set(testConfig);
 }
