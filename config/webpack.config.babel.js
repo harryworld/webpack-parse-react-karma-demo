@@ -39,6 +39,10 @@ if (TARGET === 'start' || !TARGET) {
     module: {
       preLoaders: [
         {
+          test: /\.css$/,
+          loader: 'csslint'
+        },
+        {
           test: /\.jsx?$/,
           // we are using `eslint-loader` explicitly since
           // we have ESLint module installed. This way we
