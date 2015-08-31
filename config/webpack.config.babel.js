@@ -37,6 +37,16 @@ if (TARGET === 'start' || !TARGET) {
       progress: true
     },
     module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          // we are using `eslint-loader` explicitly since
+          // we have ESLint module installed. This way we
+          // can be certain that it uses the right loader
+          loader: 'eslint-loader',
+          include: clientAppPath
+        }
+      ],
       loaders: [
         {
           test: /\.css$/,
