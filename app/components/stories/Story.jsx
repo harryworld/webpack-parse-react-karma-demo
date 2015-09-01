@@ -2,6 +2,6 @@ import React from 'react';
 
 export default class Story extends React.Component {
   render() {
-    return <div>Learn Webpack</div>;
+    return <div>Story Detail</div>;
   }
 }
