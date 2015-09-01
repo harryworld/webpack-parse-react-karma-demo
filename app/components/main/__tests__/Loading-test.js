@@ -8,5 +8,5 @@ describe('Loading', () => {
     expect(element).toBeTruthy();
   });
 
-  it('shows loading')
+  it('shows loading');
 });

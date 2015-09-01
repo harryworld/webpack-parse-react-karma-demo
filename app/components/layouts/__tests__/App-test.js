@@ -6,7 +6,7 @@ import StubRouterContext  from '../../../support/stub_router_context';
 
 describe('App', () => {
   it('renders', (done) => {
-    let Subject = StubRouterContext(App)
+    let Subject = StubRouterContext(App);
     let element = TestUtils.renderIntoDocument(<Subject />);
 
     expect(element).toBeTruthy();
