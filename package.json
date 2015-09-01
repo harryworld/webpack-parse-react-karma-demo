@@ -66,6 +66,7 @@
     "webpack-merge": "^0.2.0"
   },
   "dependencies": {
+    "object-assign": "^4.0.1",
     "react": "^0.13.3"
   }
 }
