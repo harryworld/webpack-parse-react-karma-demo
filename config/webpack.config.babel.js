@@ -7,7 +7,7 @@ var merge             = require('webpack-merge');
 var Clean             = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var App               = require('../app/components/App.jsx');
+var Loading           = require('../app/components/main/Loading.jsx');
 var pkg               = require('../package.json');
 
 var clientAppPath     = path.join(__dirname, '../app/');
@@ -120,7 +120,7 @@ if (TARGET === 'build') {
         templateContent: renderTemplate(
           fs.readFileSync(clientAppPath + 'templates/index.tpl', 'utf8'),
           {
-            app: React.renderToStaticMarkup(<App />)
+            app: React.renderToStaticMarkup(<Loading />)
           }
         )
       })

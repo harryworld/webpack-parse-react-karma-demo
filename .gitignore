@@ -1,6 +1,9 @@
 # MacOS
 .DS_Store
 
+# Config Secrets
+config/secrets.js
+
 # Logs
 logs
 *.log

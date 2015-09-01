@@ -1,19 +1,14 @@
 import './assets/stylesheets/main.css';
 
+import Parse from 'parse';
 import React from 'react';
-import App from './components/App.jsx';
+import Router from 'react-router';
 
-main();
+import secrets from '../config/secrets';
+import Routes from './Routes';
 
-function main() {
-  if (process.env.NODE_ENV === 'production') {
-    React.render(<App />, document.getElementById('app'));
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    const app = document.createElement('div');
+Parse.Parse.initialize(secrets.parse.applicationId, secrets.parse.javascriptKey);
 
-    document.body.appendChild(app);
-
-    React.render(<App />, app);
-  }
-}
+Router.run(Routes, Router.HistoryLocation, (Handler) => {
+  return React.render(<Handler/>, document.body);
+});
