@@ -67,6 +67,9 @@
   },
   "dependencies": {
     "object-assign": "^4.0.1",
-    "react": "^0.13.3"
+    "parse": "^1.5.0",
+    "parse-react": "^0.4.2",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
   }
 }
